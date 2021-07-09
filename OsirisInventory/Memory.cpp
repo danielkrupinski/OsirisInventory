@@ -153,7 +153,6 @@ Memory::Memory() noexcept
     conColorMsg = reinterpret_cast<decltype(conColorMsg)>(GetProcAddress(tier0, "?ConColorMsg@@YAXABVColor@@PBDZZ"));
     equipWearable = reinterpret_cast<decltype(equipWearable)>(findPattern(CLIENT_DLL, "\x55\x8B\xEC\x83\xEC\x10\x53\x8B\x5D\x08\x57\x8B\xF9"));
     weaponSystem = *reinterpret_cast<WeaponSystem**>(findPattern(CLIENT_DLL, "\x8B\x35????\xFF\x10\x0F\xB7\xC0") + 2);
-    getPlayerViewmodelArmConfigForPlayerModel = relativeToAbsolute<decltype(getPlayerViewmodelArmConfigForPlayerModel)>(findPattern(CLIENT_DLL, "\xE8????\x89\x87????\x6A") + 1);
     getEventDescriptor = relativeToAbsolute<decltype(getEventDescriptor)>(findPattern(ENGINE_DLL, "\xE8????\x8B\xD8\x85\xDB\x75\x27") + 1);
     playerResource = *reinterpret_cast<PlayerResource***>(findPattern(CLIENT_DLL, "\x74\x30\x8B\x35????\x85\xF6") + 4);
     registeredPanoramaEvents = reinterpret_cast<decltype(registeredPanoramaEvents)>(*reinterpret_cast<std::uintptr_t*>(findPattern(CLIENT_DLL, "\xE8????\xA1????\xA8\x01\x75\x21") + 6) - 36);
@@ -200,52 +199,19 @@ Memory::Memory() noexcept
     globalVars = *relativeToAbsolute<GlobalVars**>((*reinterpret_cast<std::uintptr_t**>(interfaces->client))[11] + 16);
     itemSystem = relativeToAbsolute<decltype(itemSystem)>(findPattern(CLIENT_DLL, "\xE8????\x4D\x63\xEC") + 1);
     weaponSystem = *relativeToAbsolute<WeaponSystem**>(findPattern(CLIENT_DLL, "\x48\x8B\x58\x10\x48\x8B\x07\xFF\x10") + 12);
-
-    isOtherEnemy = relativeToAbsolute<decltype(isOtherEnemy)>(findPattern(CLIENT_DLL, "\xE8????\x84\xC0\x44\x89\xE2") + 1);
-    lineGoesThroughSmoke = reinterpret_cast<decltype(lineGoesThroughSmoke)>(findPattern(CLIENT_DLL, "\x40\x0F\xB6\xFF\x55"));
-    getDecoratedPlayerName = relativeToAbsolute<decltype(getDecoratedPlayerName)>(findPattern(CLIENT_DLL, "\xE8????\x8B\x33\x4C\x89\xF7") + 1);
-
+   
     hud = relativeToAbsolute<decltype(hud)>(findPattern(CLIENT_DLL, "\x53\x48\x8D\x3D????\x48\x83\xEC\x10\xE8") + 4);
     findHudElement = relativeToAbsolute<decltype(findHudElement)>(findPattern(CLIENT_DLL, "\xE8????\x48\x8D\x50\xE0") + 1);
 
-    disablePostProcessing = relativeToAbsolute<decltype(disablePostProcessing)>(findPattern(CLIENT_DLL, "\x80\x3D?????\x89\xB5") + 2);
-    submitReportFunction = findPattern(CLIENT_DLL, "\x55\x48\x89\xF7\x48\x89\xE5\x41\x57\x41\x56\x41\x55\x41\x54\x53\x48\x89\xD3\x48\x83\xEC\x58");
-    loadSky = relativeToAbsolute<decltype(loadSky)>(findPattern(ENGINE_DLL, "\xE8????\x84\xC0\x74\xAB") + 1);
-    clientMode = *relativeToAbsolute<decltype(clientMode)*>(relativeToAbsolute<uintptr_t>((*reinterpret_cast<uintptr_t**>(interfaces->client))[10] + 12) + 4);
-    input = **relativeToAbsolute<Input***>((*reinterpret_cast<uintptr_t**>(interfaces->client))[16] + 3);
     playerResource = relativeToAbsolute<PlayerResource**>(findPattern(CLIENT_DLL, "\x74\x38\x48\x8B\x3D????\x89\xDE") + 5);
 
-    glowObjectManager = relativeToAbsolute<decltype(glowObjectManager)>(relativeToAbsolute<uintptr_t>(findPattern(CLIENT_DLL, "\xE8????\x4C\x89\xE7\x8B\x70\x20") + 1) + 12);
-    setClanTag = relativeToAbsolute<decltype(setClanTag)>(findPattern(ENGINE_DLL, "\xE8????\xE9????\x66\x0F\x1F\x44??\x48\x8B\x7D\xB0") + 1);
     getEventDescriptor = relativeToAbsolute<decltype(getEventDescriptor)>(findPattern(ENGINE_DLL, "\xE8????\x48\x85\xC0\x74\x62") + 1);
-    activeChannels = relativeToAbsolute<ActiveChannels*>(findPattern(ENGINE_DLL, "\x48\x8D\x3D????\x4C\x89\xE6\xE8????\x8B\xBD") + 3);
-    channels = relativeToAbsolute<Channel*>(findPattern(ENGINE_DLL, "\x4C\x8D\x35????\x49\x83\xC4\x04") + 3);
-    cameraThink = findPattern(CLIENT_DLL, "\x85\xC0\x75\x64\x41\x80\x7D");
-    getPlayerViewmodelArmConfigForPlayerModel = relativeToAbsolute<decltype(getPlayerViewmodelArmConfigForPlayerModel)>(findPattern(CLIENT_DLL, "\xE8????\x48\x8B\x78\x08\xBA") + 1);
-    keyValuesFromString = relativeToAbsolute<decltype(keyValuesFromString)>(findPattern(CLIENT_DLL, "\xE8????\x48\x89\xDF\x48\x89\x45\xE0") + 1);
-    keyValuesFindKey = relativeToAbsolute<decltype(keyValuesFindKey)>(findPattern(CLIENT_DLL, "\xE8????\x48\x85\xC0\x75\x24") + 1);
-    keyValuesSetString = relativeToAbsolute<decltype(keyValuesSetString)>(findPattern(CLIENT_DLL, "\xE8????\x4C\x89\xE6\x4C\x89\xFF\xE8????\x48\x8B\x03") + 1);
-    drawScreenEffectMaterial = findPattern(CLIENT_DLL, "\x55\x48\x89\xE5\x41\x57\x41\x56\x45\x89\xC6\x41\x55\x41\x54\x53");
-    vignette = relativeToAbsolute<float*>(findPattern(CLIENT_DLL, "\x48\x8B\x07\x0F\x2F\x05") + 6);
-    viewRender = **relativeToAbsolute<ViewRender***>(findPattern(CLIENT_DLL, "\x0F\x85????\x48\x8B\x05????\x45\x89\xF8") + 9);
-    viewRenderBeams = **relativeToAbsolute<ViewRenderBeams***>(findPattern(CLIENT_DLL, "\x4C\x89\xF6\x4C\x8B\x25????\x48\x8D\x05") + 6);
-    scopeDust = findPattern(CLIENT_DLL, "\x8B\x85????\x43\x8D\x14\x2E");
-    scopeArc = findPattern(CLIENT_DLL, "\x49\x8B\x3C\x24\x8B\xB3????\x48\x8B\x07\xFF\x90????\x49\x8B\x3C\x24\x4C\x89\xEA");
-    demoOrHLTV = findPattern(CLIENT_DLL, "\x0F\xB6\x10\x89\xD0") - 16;
-    money = findPattern(CLIENT_DLL, "\x84\xC0\x75\x9E\xB8????\xEB\xB9");
-    demoFileEndReached = findPattern(CLIENT_DLL, "\x48\x85\xC0\x0F\x84????\x80\x78\x10?\x74\x7F");
+  
     clearHudWeapon = relativeToAbsolute<decltype(clearHudWeapon)>(findPattern(CLIENT_DLL, "\xE8????\xC6\x45\xB8\x01") + 1);
     equipWearable = reinterpret_cast<decltype(equipWearable)>(findPattern(CLIENT_DLL, "\x55\x48\x89\xE5\x41\x56\x41\x55\x41\x54\x49\x89\xF4\x53\x48\x89\xFB\x48\x83\xEC\x10\x48\x8B\x07"));
-    setAbsOrigin = relativeToAbsolute<decltype(setAbsOrigin)>(findPattern(CLIENT_DLL, "\xE8????\x49\x8B\x07\x31\xF6") + 1);
-    plantedC4s = relativeToAbsolute<decltype(plantedC4s)>(findPattern(CLIENT_DLL, "\x48\x8D\x3D????\x42\xC6\x44\x28") + 3);
-    gameRules = *relativeToAbsolute<Entity***>(findPattern(CLIENT_DLL, "\x48\x8B\x1D????\x48\x8B\x3B\x48\x85\xFF\x74\x06") + 3);
-    setOrAddAttributeValueByNameFunction = reinterpret_cast<decltype(setOrAddAttributeValueByNameFunction)>(findPattern(CLIENT_DLL, "\x55\x48\x89\xE5\x41\x57\x41\x56\x41\x55\x49\x89\xFD\x41\x54\x53\x48\x89\xF3\x48\x83\xEC\x38"));
-    dispatchSound = reinterpret_cast<int*>(findPattern(ENGINE_DLL, "\x74\x10\xE8????\x48\x8B\x35") + 3);
-    predictionRandomSeed = *relativeToAbsolute<int**>(findPattern(CLIENT_DLL, "\x41\x8D\x56\xFF\x31\xC9") - 14);
+
     registeredPanoramaEvents = relativeToAbsolute<decltype(registeredPanoramaEvents)>(relativeToAbsolute<std::uintptr_t>(findPattern(CLIENT_DLL, "\xE8????\x8B\x50\x10\x49\x89\xC6") + 1) + 12);
     makePanoramaSymbolFn = relativeToAbsolute<decltype(makePanoramaSymbolFn)>(findPattern(CLIENT_DLL, "\xE8????\x0F\xB7\x45\xA0\x31\xF6") + 1);
-    moveData = **relativeToAbsolute<MoveData***>(findPattern(CLIENT_DLL, "\x48\x8B\x05????\x4C\x8D\xA5????\x4C\x8D\xB5") + 3);
-    moveHelper = **relativeToAbsolute<MoveHelper***>(findPattern(CLIENT_DLL, "\x48\x8B\x05????\x44\x89\x85????\x48\x8B\x38") + 3);
 
     inventoryManager = relativeToAbsolute<decltype(inventoryManager)>(findPattern(CLIENT_DLL, "\x48\x8D\x35????\x48\x8D\x3D????\xE9????\x90\x90\x90\x55") + 3);
     createEconItemSharedObject = relativeToAbsolute<decltype(createEconItemSharedObject)>(findPattern(CLIENT_DLL, "\x55\x48\x8D\x05????\x31\xD2\x4C\x8D\x0D") + 50);
@@ -267,7 +233,6 @@ Memory::Memory() noexcept
     deleteItemGetArgAsStringReturnAddress = findPattern(CLIENT_DLL, "\x48\x85\xC0\x74\xDE\x48\x89\xC7\xE8????\x48\x89\xC3\xE8????\x48\x89\xDE");
     setDynamicAttributeValueFn = findPattern(CLIENT_DLL, "\x41\x8B\x06\x49\x8D\x7D\x08") - 95;
     createBaseTypeCache = relativeToAbsolute<decltype(createBaseTypeCache)>(findPattern(CLIENT_DLL, "\xE8????\x48\x89\xDE\x5B\x48\x8B\x10") + 1);
-    insertIntoTree = findPattern(CLIENT_DLL, "\x74\x2A\x4C\x8B\x10") + 31;
     uiComponentInventory = relativeToAbsolute<decltype(uiComponentInventory)>(findPattern(CLIENT_DLL, "\xE8????\x4C\x89\x3D????\x4C\x89\xFF\xEB\x9E") + 8);
     setItemSessionPropertyValue = relativeToAbsolute<decltype(setItemSessionPropertyValue)>(findPattern(CLIENT_DLL, "\xE8????\x48\x8B\x85????\x41\x83\xC4\x01") + 1);
 

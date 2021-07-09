@@ -63,7 +63,6 @@ public:
     std::add_pointer_t<void __CDECL(const std::array<std::uint8_t, 4>& color, const char* msg, ...)> conColorMsg;
     int(__THISCALL* equipWearable)(void* wearable, void* player);
     WeaponSystem* weaponSystem;
-    std::add_pointer_t<const char** __FASTCALL(const char* playerModelName)> getPlayerViewmodelArmConfigForPlayerModel;
     GameEventDescriptor* (__THISCALL* getEventDescriptor)(GameEventManager* _this, const char* name, int* cookie);
     PlayerResource** playerResource;
     InventoryManager* inventoryManager;
