@@ -2,8 +2,6 @@
 
 #include <memory>
 
-struct ImFont;
-
 class GUI {
 public:
     GUI() noexcept;

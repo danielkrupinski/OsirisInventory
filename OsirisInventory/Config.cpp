@@ -13,8 +13,6 @@
 
 #include "nlohmann/json.hpp"
 
-#include "imgui/imgui.h"
-
 #include "Config.h"
 #include "InventoryChanger/InventoryChanger.h"
 

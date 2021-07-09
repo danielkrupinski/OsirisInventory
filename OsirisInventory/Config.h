@@ -1,14 +1,10 @@
 #pragma once
 
-#include <array>
 #include <cstddef>
 #include <filesystem>
 #include <memory>
 #include <string>
-#include <unordered_map>
 #include <vector>
-
-#include "ConfigStructs.h"
 
 class Config {
 public:

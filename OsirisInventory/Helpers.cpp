@@ -1,6 +1,3 @@
-#include <algorithm>
-#include <array>
-#include <cmath>
 #include <cstdlib>
 #include <cstring>
 #include <cwctype>
@@ -14,10 +11,7 @@
 
 #include "imgui/imgui.h"
 
-#include "ConfigStructs.h"
 #include "Helpers.h"
-#include "Memory.h"
-#include "SDK/GlobalVars.h"
 
 ImWchar* Helpers::getFontGlyphRanges() noexcept
 {
