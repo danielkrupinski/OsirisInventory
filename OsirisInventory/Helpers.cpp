@@ -4,6 +4,7 @@
 #include <fstream>
 #include <random>
 #include <string_view>
+#include <unordered_map>
 
 #ifdef _WIN32
 #include <Windows.h>
