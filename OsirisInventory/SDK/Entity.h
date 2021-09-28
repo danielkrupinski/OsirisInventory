@@ -68,10 +68,10 @@ public:
     VIRTUAL_METHOD_V(int&, handle, 2, (), (this))
 
     VIRTUAL_METHOD(void, setModelIndex, WIN32_LINUX(75, 111), (int index), (this, index))
-    VIRTUAL_METHOD(Team, getTeamNumber, WIN32_LINUX(87, 127), (), (this))
-    VIRTUAL_METHOD(bool, isPlayer, WIN32_LINUX(157, 209), (), (this))
-    VIRTUAL_METHOD(bool, isWeapon, WIN32_LINUX(165, 217), (), (this))
-    VIRTUAL_METHOD(Entity*, getActiveWeapon, WIN32_LINUX(267, 330), (), (this))
+    VIRTUAL_METHOD(Team, getTeamNumber, WIN32_LINUX(88, 128), (), (this))
+    VIRTUAL_METHOD(bool, isPlayer, WIN32_LINUX(158, 210), (), (this))
+    VIRTUAL_METHOD(bool, isWeapon, WIN32_LINUX(166, 218), (), (this))
+    VIRTUAL_METHOD(Entity*, getActiveWeapon, WIN32_LINUX(268, 331), (), (this))
 
     int getUserId() noexcept;
     std::uint64_t getSteamId() noexcept;
